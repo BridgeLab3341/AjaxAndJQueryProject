@@ -46,7 +46,6 @@ namespace AjaxAndJQueryProject.Controllers
                 throw new Exception("Error occurred while saving data to the database");
             }
         }
-        [HttpGet]
         public JsonResult Edit(int id)
         {
             try
@@ -54,22 +53,21 @@ namespace AjaxAndJQueryProject.Controllers
                 var employee = context.AjaxEmployee.FirstOrDefault(x => x.Id == id);
                 return new JsonResult(employee);
             }
-            catch (Exception )
+            catch (Exception ) 
             {
                 throw new Exception("Error occurred while editing data.");
             }
         }
         [HttpPost]
-        public JsonResult Update(int id)
+        public JsonResult Update(Employee employee)
         {
             try
             {
-                var employee = context.AjaxEmployee.FirstOrDefault(x => x.Id == id);
                 context.AjaxEmployee.Update(employee);
                 context.SaveChanges();
                 return new JsonResult("Updated Successfully");
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 throw new Exception("Error occurred while Updating data.");
             }
