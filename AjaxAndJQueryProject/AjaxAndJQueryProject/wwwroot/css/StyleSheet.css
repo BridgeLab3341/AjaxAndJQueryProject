@@ -1,0 +1,28 @@
+﻿body {
+    margin-bottom: 60px;
+    background: #dad6be;
+}
+.navbar-brand {
+    display: inline-block;
+    padding-top: 0.3125rem;
+    padding-bottom: 0.3125rem;
+    margin-right: 1rem;
+    font-size: 1.8rem;
+    line-height: inherit;
+    font-weight: 500;
+}
+.pb-3, .py-3 {
+    padding-bottom: 1rem !important;
+    background-color: #98bdbe;
+    border-color: #1e201e;
+}
+.text-center {
+    text-align: center !important;
+    background-color: #bac7c3;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #124a83;
+    border-color: #1861ac;
+    font-weight: 700;
+}
