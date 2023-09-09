@@ -31,7 +31,12 @@ function ShowData() {
 }
 
 $('#btnAddEmployee').click(function () {
+    ClearTextBox();
     $('#EmployeeMadal').modal('show');
+    $('#empId').hide();
+    $('#AddEmployee').css('display', 'block');
+    $('#btnUpdate').css('display', 'none');
+    $('#empHeading').text('Add Employee');
 });
 function AddEmployee() {
     var objData = {
@@ -99,6 +104,7 @@ function Edit(id) {
             $('#Salary').val(response.salary);
             $('#AddEmployee').css('display', 'none');
             $('#btnUpdate').css('display', 'block');
+            $('#empHeading').text('Update Record');
         },
         error: function () {
             alert("Data not Found")

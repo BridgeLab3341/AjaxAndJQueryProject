@@ -8,13 +8,13 @@ namespace AjaxAndJQueryProject.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
-        [Required(ErrorMessage = "* Name Should be Given")]
+        [Required(ErrorMessage = "{0} Should be Given")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "* State Should be Given")]
+        [Required(ErrorMessage = "{0} Should be Given")]
         public string State { get; set; }
-        [Required(ErrorMessage = "* City Should be Given")]
+        [Required(ErrorMessage = "{0}  Should be Given")]
         public string City { get; set; }
-        [Required(ErrorMessage = "* Salary Should be Given")]
+        [Required(ErrorMessage = "{0} Should be Given")]
         public double Salary { get; set; } 
     }
 }
