@@ -11,6 +11,24 @@
     line-height: inherit;
     font-weight: 500;
 }
+.table {
+    width: 100%;
+    margin-bottom: 1rem;
+    color: #212529;
+    font-size: 17px;
+}
+input#Name {
+    background-color: #dadee3;
+}
+input#State {
+    background-color: #dadee3;
+}
+input#City {
+    background-color: #dadee3;
+}
+input#Salary {
+    background-color: #dadee3;
+}
 .pb-3, .py-3 {
     padding-bottom: 1rem !important;
     background-color: #98bdbe;
@@ -25,4 +43,51 @@
     background-color: #124a83;
     border-color: #1861ac;
     font-weight: 700;
+}
+.modal-content {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-direction: column;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #b3d7ff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0.3rem;
+    outline: 0;
+}
+.modal-header {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: start;
+    align-items: flex-start;
+    -ms-flex-pack: justify;
+    justify-content: space-between;
+    padding: 1rem 1rem;
+    border-bottom: 1px solid rgba(0,0,0,.9);
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+.text-info {
+    color: #000 !important;
+}
+form {
+    display: table-column;
+    margin: 7px;
+    font-size: 18px;
+}
+.btn-primary {
+    color: #fff;
+    background-color: #124a83;
+    border-color: #1861ac;
+    font-weight: 700;
+    margin: 7px;
+}
+.btn-danger {
+    color: #fff;
+    background-color: #dc3545;
+    border-color: #dc3545;
+    margin: 7px;
 }
