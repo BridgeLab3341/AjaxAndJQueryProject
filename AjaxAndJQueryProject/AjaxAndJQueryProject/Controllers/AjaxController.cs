@@ -2,6 +2,7 @@
 using AjaxAndJQueryProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApplicationModels;
+using Microsoft.CodeAnalysis.CSharp.Syntax;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.Caching.Distributed;
@@ -33,33 +34,30 @@ namespace AjaxAndJQueryProject.Controllers
         }
         public JsonResult EmployeeList()
         {
-            var cacheKey = "EmployeeList";
-            string serializedEmployeeList;
-            var empolyeelist = new List<Employee>().ToList();
-            // Try to retrieve data from the cache
-            var cachedData = distributedCache.Get(cacheKey);
-            if (cachedData != null)
+            var cacheKey = "customerList";
+            string serializedCustomerList;
+            var users = new List<Employee>();
+
+            var redisCustomerList = distributedCache.Get(cacheKey);
+            if (redisCustomerList != null)
             {
-                // Data found in the cache, deserialize it
-                serializedEmployeeList = Encoding.UTF8.GetString(cachedData);
-                empolyeelist = JsonConvert.DeserializeObject<List<Employee>>(serializedEmployeeList);
-                return Json(empolyeelist);
+                serializedCustomerList = Encoding.UTF8.GetString(redisCustomerList);
+                users = JsonConvert.DeserializeObject<List<Employee>>(serializedCustomerList);
+
+                return Json(users);
             }
             else
             {
-                var idClaim = User.Claims.FirstOrDefault(x => x.Type.Equals("Id", StringComparison.InvariantCultureIgnoreCase));
-                var userId = Int32.Parse(idClaim.Value);
-                    // Data not found in the cache, retrieve it from the database
-                empolyeelist = context.AjaxEmployee.ToList();
-                    // Serialize and store in the cache
-                 serializedEmployeeList = JsonConvert.SerializeObject(empolyeelist);
-                    var redisEmployeeList = Encoding.UTF8.GetBytes(serializedEmployeeList);
-                    var options = new DistributedCacheEntryOptions()
-                        .SetAbsoluteExpiration(DateTimeOffset.Now.AddMinutes(10))
-                        .SetSlidingExpiration(TimeSpan.FromMinutes(2));
-                    distributedCache.Set(cacheKey, redisEmployeeList, options);
-            }   
-            return new JsonResult(empolyeelist);
+                var usersToRedis = context.AjaxEmployee.ToList(); 
+                serializedCustomerList = JsonConvert.SerializeObject(usersToRedis);
+                redisCustomerList = Encoding.UTF8.GetBytes(serializedCustomerList);
+                var options = new DistributedCacheEntryOptions()
+                  .SetAbsoluteExpiration(DateTime.Now.AddMinutes(10))
+                  .SetSlidingExpiration(TimeSpan.FromMinutes(2));
+                distributedCache.Set(cacheKey, redisCustomerList, options);
+
+                return Json(usersToRedis);
+            }
         }
         [HttpPost]
         public JsonResult AddEmployee(Employee model)
