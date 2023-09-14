@@ -27,6 +27,13 @@ namespace AjaxAndJQueryProject
         {
             services.AddDbContext<ApplicationContext>(opts => opts.UseSqlServer(Configuration.GetConnectionString("AjaxConnection")));
             services.AddControllersWithViews();
+            //Redis services
+            services.AddMemoryCache();
+            services.AddStackExchangeRedisCache(options =>
+            {
+                options.Configuration = "localhost:6379";
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
