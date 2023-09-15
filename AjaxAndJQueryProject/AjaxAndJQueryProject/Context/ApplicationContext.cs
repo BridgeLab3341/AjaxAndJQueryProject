@@ -9,5 +9,6 @@ namespace AjaxAndJQueryProject.Entity
         { }
 
         public DbSet<Employee> AjaxEmployee { get; set; }
+        public DbSet<UserLogin> UserLogin { get; set; }
     }
 }

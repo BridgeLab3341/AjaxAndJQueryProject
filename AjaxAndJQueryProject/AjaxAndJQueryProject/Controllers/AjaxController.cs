@@ -120,5 +120,24 @@ namespace AjaxAndJQueryProject.Controllers
                 throw new Exception("Error occurred while Deleting data.");
             }
         }
+        //public JsonResult Login(int id)
+        //{
+        //    try
+        //    {
+        //        var employee = context.AjaxEmployee.FirstOrDefault(x => x.Id == id);
+        //        if(employee != null)
+        //        {
+        //            return new JsonResult(employee);
+        //        }
+        //        else
+        //        {
+        //            return new JsonResult(null);
+        //        }
+        //    }
+        //    catch (Exception)
+        //    {
+        //        throw new Exception("Exception Occured while Login");
+        //    }
+        //}
     }
 }
